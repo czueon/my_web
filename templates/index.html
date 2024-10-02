@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+</head>
+<body>
+    <h1>게시판</h1>
+    <a href="{{ url_for('post') }}">새 글 작성</a>
+    <ul>
+        {% for post_id, post in enumerate(posts) %}
+        <li>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <p><small>작성 시간: {{ post.created_at }}</small></p>
+            <a href="{{ url_for('edit', post_id=post_id) }}">수정</a>
+            <a href="{{ url_for('delete', post_id=post_id) }}">삭제</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
